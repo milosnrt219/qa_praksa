@@ -60,4 +60,8 @@ public class LoginTests {
         loginPage.loginToSauceDemo("standard_user","");
         loginPage.checkUserLoginFailed();
     }
+    @Test
+    public void pageTitle(){
+        loginPage.checkTitle();
+    }
 }

@@ -34,4 +34,7 @@ public class LoginPage {
     public void checkUserLoginFailed(){
         Assert.assertNotEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/inventory.html");
     }
+    public void checkTitle(){
+        Assert.assertEquals(driver.getTitle(),"Swag Labs");
+    }
 }
