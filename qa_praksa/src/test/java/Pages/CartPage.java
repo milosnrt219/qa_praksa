@@ -17,6 +17,9 @@ public class CartPage {
     By itemPrice = By.className("inventory_item_price");
     By itemPriceItemPage = By.className("inventory_item_price");
 
+    By itemQuantity = By.className("cart_quantity");
+    By shoppingCartIcon = By.className("shopping_cart_link");
+
 
     public void  cartPage(WebDriver driver){
         this.driver = driver;
@@ -35,5 +38,19 @@ public class CartPage {
        // itemListPage.itemIsAddedToCart();
         //itemListPage.openItemPage();
         Assert.assertEquals(driver.findElement(itemPriceItemPage),driver.findElement(itemPrice));
+    }
+
+    public void checkItemQuantity(){
+        driver.findElement(itemQuantity).getText();
+        Assert.assertEquals(driver.findElement(itemQuantity).getText(),"1");
+    }
+    public void continueShopping(){
+        driver.findElement(continueShoppingButton).click();
+        Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/inventory.html");
+    }
+    public void checkRemovingItemFromCart(){
+        driver.findElement(removeBackpackButton).click();
+        driver.findElement(shoppingCartIcon).getText();
+        Assert.assertEquals(driver.findElement(shoppingCartIcon).getText(),"");
     }
 }

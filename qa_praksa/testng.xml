@@ -4,6 +4,23 @@
     <test name="e2eTests">
         <classes>
             <class name="e2e.e2eStandardUserTests"/>
+            <class name="e2e.e2eProblemUser"/>
+            <class name="e2e.e2ePerformanseGlitchUser"/>
+        </classes>
+    </test>
+    <test name="LoginTests">
+        <classes>
+            <class name="Tests.LoginTests"/>
+        </classes>
+    </test>
+    <test name="ItemListStandardUserTests">
+        <classes>
+            <class name="Tests.ItemListStandardUserTest"/>
+        </classes>
+    </test>
+    <test name="CartPageTests">
+        <classes>
+            <class name="Tests.CartPageTests"/>
         </classes>
     </test>
    </suite>

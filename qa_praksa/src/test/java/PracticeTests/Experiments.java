@@ -1,4 +1,4 @@
-package Tests;
+package PracticeTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
