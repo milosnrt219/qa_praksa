@@ -10,7 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class e2ePerformanseGlitchUser {
+public class e2eProblemUser {
     WebDriver driver = new ChromeDriver();
     LoginPage loginPage = new LoginPage(driver);
 
@@ -31,20 +31,21 @@ public class e2ePerformanseGlitchUser {
     public void testDown(){
         driver.quit();
     }
-    @Test
-    public void glitchedUserE2E(){
-        loginPage.loginToSauceDemo("performance_glitch_user","secret_sauce");
-        loginPage.checkUserIsLoggedIn();
-        itemListPage.addToCartItem1();
-        itemListPage.itemIsAddedToCart();
-        itemListPage.openItemPage();
-        cartPage.cartItemCheckoutProcess();
-        checkoutPage.inputUserData("Ime","prezime","11001");
-        checkoutPage.clickContinueButton();
-        checkoutPage.clickFinishButton();
-        //Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-complete.html");
-        checkoutPage.checkOrderIsCompleted();
+   @Test
+    public void problemUserE2E() {
+       loginPage.loginToSauceDemo("problem_user", "secret_sauce");
+       loginPage.checkUserIsLoggedIn();
+       itemListPage.addToCartItem1();
+       itemListPage.itemIsAddedToCart();
+       itemListPage.openItemPage();
+       cartPage.cartItemCheckoutProcess();
+       checkoutPage.inputUserData("Ime", "prezime", "11001");
+       checkoutPage.continueButtonFailed();
+       //checkoutPage.clickContinueButton();
+       //checkoutPage.clickFinishButton();
+       //Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-complete.html");
+       //checkoutPage.checkOrderIsCompleted();
 
-
-    }
+       //}
+   }
 }

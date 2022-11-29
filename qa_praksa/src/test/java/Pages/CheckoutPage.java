@@ -38,4 +38,9 @@ public class CheckoutPage {
         softAssert.assertTrue(driver.findElement(orderCompletedMessage).isDisplayed());
         softAssert.assertAll();
     }
+
+    public void continueButtonFailed(){
+        driver.findElement(continueButton).click();
+        Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-step-one.html");
+    }
 }
