@@ -16,6 +16,8 @@ public class ItemListPage {
     By addToCartbtn5 = By.id("add-to-cart-sauce-labs-onesie");
     By addToCartbtn6 = By.id("add-to-cart-test.allthethings()-t-shirt-(red)");
 
+    By shoppingCart = By.className("shopping_cart_link");
+
     public ItemListPage(WebDriver driver){
         this.driver=driver;
     }
@@ -50,7 +52,10 @@ public class ItemListPage {
         WebElement cart = driver.findElement(By.className("shopping_cart_link"));
         Assert.assertEquals(cart.getText(),"");
     }
-
+    public void openItemPage(){
+        WebElement cart = driver.findElement(By.className("shopping_cart_link"));
+        cart.click();
+    }
 }
 //#add-to-cart-sauce-labs-backpack
 //#remove-sauce-labs-backpack
