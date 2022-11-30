@@ -44,6 +44,24 @@ public class ItemListStandardUserTest {
         itemListPage.removeFromCartItem1();
         itemListPage.itemIsRemovedFromCart();
     }
-
-
+    @Test
+    public void sortAtoZ(){
+        loginUser();
+        itemListPage.checkSortAtoZ();
+    }
+    @Test
+    public void sortZtoA(){
+        loginUser();
+        itemListPage.checkSortZtoA();
+    }
+    @Test
+    public void sortPriceLowToHigh(){
+        loginUser();
+        itemListPage.checkSortPriceLowToHigh();
+    }
+    @Test
+    public void sortPriceHighToLow(){
+        loginUser();
+        itemListPage.checkSortPriceHighToLow();
+    }
 }
