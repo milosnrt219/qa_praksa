@@ -23,14 +23,16 @@ public class e2eStandardUserTests {
     CheckoutPage checkoutPage = new CheckoutPage(driver);
 
     @BeforeMethod
-    public void setupClass()
-    {
-        String loginpageUrl = "https://saucedemo.com";
-        driver.get(loginpageUrl);
+    public void refreshPage(){
+        driver = new ChromeDriver();
+        driver.get("https://saucedemo.com");
+        loginPage = new LoginPage(driver);
+        itemListPage = new ItemListPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
-
     @AfterMethod
-    public void testDown(){
+    public void afterMetod(){
         driver.quit();
     }
     @Test
