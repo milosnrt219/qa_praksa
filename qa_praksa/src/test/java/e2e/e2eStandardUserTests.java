@@ -7,13 +7,15 @@ import Pages.LoginPage;
 import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 public class e2eStandardUserTests {
+   ChromeOptions options = new ChromeOptions();
+   WebDriver driver = new ChromeDriver(options.setHeadless(true));
 
-    WebDriver driver = new ChromeDriver();
     LoginPage loginPage = new LoginPage(driver);
 
     ItemListPage itemListPage = new ItemListPage(driver);
@@ -23,13 +25,10 @@ public class e2eStandardUserTests {
     CheckoutPage checkoutPage = new CheckoutPage(driver);
 
     @BeforeMethod
-    public void refreshPage(){
-        driver = new ChromeDriver();
-        driver.get("https://saucedemo.com");
-        loginPage = new LoginPage(driver);
-        itemListPage = new ItemListPage(driver);
-        cartPage = new CartPage(driver);
-        checkoutPage = new CheckoutPage(driver);
+    public void setupClass()
+    {
+        String loginpageUrl = "https://saucedemo.com";
+        driver.get(loginpageUrl);
     }
     @AfterMethod
     public void afterMetod(){
