@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 
 public class Experiments {
     WebDriver driver = new ChromeDriver();
+    WebElement element;
 
     @BeforeClass
     public void setupClass(){
@@ -33,21 +35,7 @@ public class Experiments {
 
         Assert.assertEquals(driver.getCurrentUrl(),"https://the-internet.herokuapp.com/abtest");
     }
-    @Test
-    public void dropdownTest(){
-        driver.get("https://the-internet.herokuapp.com/dropdown");
-       // WebElement option1= driver.findElement(By.cssSelector("#dropdown > option:nth-child(2)"))
-        Select drpList = new Select(driver.findElement(By.id("dropdown")));
-        drpList.selectByVisibleText("Option 2");
-        String text = driver.findElement(By.cssSelector("#dropdown")).getText();
 
-        Assert.assertEquals(text,"Option 1");
-    }
-    @Test
-    public void test4(){
-        driver.findElement(By.xpath("/html/body/div[2]/a/img")).click();
-        Assert.assertEquals(driver.getCurrentUrl(),"https://github.com/tourdedave/the-internet");
-    }
     @Test
     public void testInput(){
         driver.get("https://the-internet.herokuapp.com/inputs");
@@ -57,5 +45,34 @@ public class Experiments {
         System.out.println(inputNumber.getText());
 
 
+    }
+    @Test
+    public void rightClick() {
+        driver.navigate().to("https://the-internet.herokuapp.com/context_menu");
+        element = driver.findElement(By.id("hot-spot"));
+        Actions actions = new Actions(driver);
+        actions.contextClick(element).perform();
+        driver.switchTo().alert().accept();
+    }
+    @Test
+    public void dropdown()  {
+        driver.get("https://the-internet.herokuapp.com/dropdown");
+        element = driver.findElement(By.id("dropdown"));
+        element.click();
+        WebElement option1 = element.findElement(By.cssSelector("option[value='1']"));
+        WebElement option2 = element.findElement(By.cssSelector("option[value='2']"));
+        option1.click();
+        Assert.assertTrue(option1.isSelected());
+        Assert.assertFalse(option2.isSelected());
+    }
+    @Test
+    public void hover() {
+        driver.get("https://the-internet.herokuapp.com/hovers");
+        element = driver.findElement(By.className("figure"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = driver.findElement(By.xpath("//*[contains(text(), 'name: user1')]"));
+        Assert.assertTrue(element.isDisplayed(), "user1 expected because of the hover");
     }
 }
